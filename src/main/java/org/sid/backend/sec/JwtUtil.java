@@ -1,4 +1,4 @@
-package org.sid.secservice.sec;
+package org.sid.backend.sec;
 
 public class JwtUtil {
     public static final String SECRET="mySecret1234";

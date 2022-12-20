@@ -1,7 +1,7 @@
-package org.sid.secservice;
-import org.sid.secservice.sec.filters.JwtAuthenticationFilter;
-import org.sid.secservice.sec.filters.JwtAuthorizationFilter;
-import org.sid.secservice.sec.service.UserDetailsServiceImpl;
+package org.sid.backend;
+import org.sid.backend.sec.filters.JwtAuthenticationFilter;
+import org.sid.backend.sec.filters.JwtAuthorizationFilter;
+import org.sid.backend.sec.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,7 +37,6 @@ private UserDetailsServiceImpl userDetailsService;
         http.headers().frameOptions().disable();
         http.authorizeRequests().antMatchers("/h2-console/**","/refreshToken/**").permitAll();
         //http.formLogin();
-
 //        http.authorizeRequests().antMatchers(HttpMethod.POST,"/users/**").hasRole( "ADMIN");
 //        http.authorizeRequests().antMatchers(HttpMethod.GET,"/users/**").hasAuthority("USER");
         http.authorizeRequests().anyRequest().authenticated();

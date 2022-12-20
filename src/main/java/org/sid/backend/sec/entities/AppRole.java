@@ -1,4 +1,4 @@
-package org.sid.secservice.sec.entities;
+package org.sid.backend.sec.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

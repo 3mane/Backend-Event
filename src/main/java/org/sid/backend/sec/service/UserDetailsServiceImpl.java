@@ -1,5 +1,5 @@
-package org.sid.secservice.sec.service;
-import org.sid.secservice.sec.entities.AppUser;
+package org.sid.backend.sec.service;
+import org.sid.backend.sec.entities.AppUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

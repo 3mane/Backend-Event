@@ -1,7 +1,7 @@
-package org.sid.secservice;
-import org.sid.secservice.sec.entities.AppRole;
-import org.sid.secservice.sec.entities.AppUser;
-import org.sid.secservice.sec.service.AccountService;
+package org.sid.backend;
+import org.sid.backend.sec.entities.AppRole;
+import org.sid.backend.sec.entities.AppUser;
+import org.sid.backend.sec.service.AccountService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

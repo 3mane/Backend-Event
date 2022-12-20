@@ -1,7 +1,7 @@
-package org.sid.secservice.sec.service;
+package org.sid.backend.sec.service;
 
-import org.sid.secservice.sec.entities.AppRole;
-import org.sid.secservice.sec.entities.AppUser;
+import org.sid.backend.sec.entities.AppRole;
+import org.sid.backend.sec.entities.AppUser;
 
 import java.util.List;
 

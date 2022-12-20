@@ -1,6 +1,6 @@
-package org.sid.secservice.sec.repo;
+package org.sid.backend.sec.repo;
 
-import org.sid.secservice.sec.entities.AppRole;
+import org.sid.backend.sec.entities.AppRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AppRoleRepository extends JpaRepository<AppRole,Long> {

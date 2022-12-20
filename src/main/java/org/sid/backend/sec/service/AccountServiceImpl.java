@@ -1,9 +1,9 @@
-package org.sid.secservice.sec.service;
+package org.sid.backend.sec.service;
 
-import org.sid.secservice.sec.entities.AppRole;
-import org.sid.secservice.sec.entities.AppUser;
-import org.sid.secservice.sec.repo.AppRoleRepository;
-import org.sid.secservice.sec.repo.AppUserRepository;
+import org.sid.backend.sec.entities.AppRole;
+import org.sid.backend.sec.entities.AppUser;
+import org.sid.backend.sec.repo.AppRoleRepository;
+import org.sid.backend.sec.repo.AppUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
