@@ -1,9 +1,9 @@
-package org.sid.backend.entities;
+package org.sid.backend.model;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.List;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,12 +21,6 @@ public class Evenement implements Serializable {
     private Date dateDebut;
     private Date dateFin;
     private String lieu;
-    //private Image image;
-    private String type;
-    private String categorie;
-    private String prix;
-    //private String organisateur;
-    //private String contact;
-    private String email;
-    private String telephone;
+    @OneToMany(mappedBy= "evenement",cascade= CascadeType.ALL)
+    private List<Activite> activites;
 }

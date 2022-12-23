@@ -11,13 +11,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootApplication
 @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
-public class SecServiceApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(SecServiceApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
     @Bean
@@ -29,17 +31,13 @@ public class SecServiceApplication {
         return args -> {
             accountService.addNewRole(new AppRole(null,"USER"));
             accountService.addNewRole(new AppRole(null,"ADMIN"));
-            accountService.addNewUser(new AppUser(null,"user1","1234",new ArrayList<>()));
-            accountService.addNewUser(new AppUser(null,"admin","1234",new ArrayList<>()));
-            accountService.addNewUser(new AppUser(null,"user2","1234",new ArrayList<>()));
+            accountService.addNewUser(new AppUser(null, "user1", "1234", new ArrayList<>(),new HashSet<>(),new HashSet<>()));
+            accountService.addNewUser(new AppUser(null,"admin","1234",new ArrayList<>(),new HashSet<>(),new HashSet<>()));
+            accountService.addNewUser(new AppUser(null,"user2","1234",new ArrayList<>(),new HashSet<>(),new HashSet<>()));
             accountService.addRoleToUser("user1","USER");
             accountService.addRoleToUser("admin","USER");
             accountService.addRoleToUser("admin","ADMIN");
             accountService.addRoleToUser("user2","USER");
-
-
-
         };
     }
-
 }
