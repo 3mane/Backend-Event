@@ -22,7 +22,7 @@ public class NotificationConverter {
         return notificationVo;
     }
 
-    public static Notification toEntity(NotificationVo notificationVo) {
+    public static Notification toBo(NotificationVo notificationVo) {
         Notification notification = new Notification();
         notification.setId(notificationVo.getId());
         notification.setIdUser(notificationVo.getIdUser());

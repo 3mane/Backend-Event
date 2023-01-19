@@ -20,8 +20,6 @@ public class AccountServiceImpl implements AccountService {
 
     private  AppUserRepository appUserRepository;
     private  AppRoleRepository appRoleRepository;
-
-
     private  PasswordEncoder passwordEncoder;
 
 

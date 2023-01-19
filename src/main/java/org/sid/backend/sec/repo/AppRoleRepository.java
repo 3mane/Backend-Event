@@ -7,4 +7,5 @@ public interface AppRoleRepository extends JpaRepository<AppRole,Long> {
      AppRole findByRoleName(String roleName);
 
 
+
 }

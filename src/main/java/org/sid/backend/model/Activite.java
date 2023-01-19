@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,9 +21,13 @@ public class Activite  implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-    private String nom;
+    private String name;
     private String description;
+    @JsonFormat(pattern="yyyy-MM-dd")
+
     private Date dateDebut;
+    @JsonFormat(pattern="yyyy-MM-dd")
+
     private Date dateFin;
     private String lieu;
     private String categorie;
@@ -35,5 +40,4 @@ public class Activite  implements Serializable {
     private Set<AppUser> users =new HashSet<>();
     @OneToMany(mappedBy= "activite",cascade= CascadeType.ALL)
     private List<Notification> notifications;
-
 }
