@@ -1,5 +1,7 @@
 package org.sid.backend.services;
+import org.sid.backend.domaine.ActiviteVo;
 import org.sid.backend.domaine.EvenementVo;
+import org.sid.backend.model.Evenement;
 
 import java.util.List;
 public interface EvenementService {
@@ -16,15 +18,13 @@ public interface EvenementService {
 
 
     //add activite to evenement
-    EvenementVo addActiviteToEvenement(Long idEvenement, Long idActivite);
-    //add activite to evenement
+    void addActiviteToEvenement(Long idEvenement, ActiviteVo activiteVo);
+   //**************************************************************
+    //add event
+//    Evenement addEvent(EvenementVo evenementVo,List<ActiviteVo> activiteVos);
+    //**************************************************************
+//    EvenementVo addActiviteToEvenement(Long idEvenement, ActiviteVo activiteVo);
 
-
-
-
-
-
-    //void addActiviteToEvenement(EvenementVo evenementVo);
     //find by activity
 //    List<EvenementVo> findByActiviteEvenement(String activite);
 }

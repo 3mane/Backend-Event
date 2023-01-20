@@ -1,5 +1,4 @@
 package org.sid.backend.sec.web;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -11,10 +10,7 @@ import org.sid.backend.sec.entities.AppRole;
 import org.sid.backend.sec.entities.AppUser;
 import org.sid.backend.sec.service.AccountService;
 import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,6 +1,7 @@
 package org.sid.backend.services.impl;
 import org.sid.backend.dao.ActiviteRepository;
 import org.sid.backend.dao.EvenementRepository;
+import org.sid.backend.domaine.ActiviteVo;
 import org.sid.backend.domaine.EvenementVo;
 import org.sid.backend.domaine.converter.EvenementConverter;
 import org.sid.backend.model.Activite;
@@ -28,11 +29,34 @@ public class EvenementServiceImpl implements EvenementService {
         Evenement evenement = evenementRepository.findById(id).get();
         return EvenementConverter.toVo(evenement);
     }
-
+    //save evenement with activite
     @Override
     public void saveEvenement(EvenementVo evenementVo) {
-        evenementRepository.save(EvenementConverter.toBo(evenementVo));
+        Evenement evenement = EvenementConverter.toBo(evenementVo);
+        evenementRepository.save(evenement);
+
     }
+
+//    @Override
+//    public void saveEvenement(Evenement evenementV) {
+//        for (Activite activite : evenementV.getActivites()) {
+//            activite.setEvenement(evenementV);
+//        }
+//        evenementRepository.save(evenementV);
+//
+//
+//
+//    }
+
+
+
+
+
+
+
+
+
+
 
 
     @Override
@@ -61,6 +85,13 @@ public class EvenementServiceImpl implements EvenementService {
     }
 
 //    @Override
+//    public void addActiviteToEvenement(Long idEvenement, ActiviteVo activiteVo) {
+//        Evenement evenement = evenementRepository.findById(idEvenement).get();
+//
+//                evenementRepository.save(evenement);
+//    }
+
+//    @Override
 //    public void addActiviteToEvenement(EvenementVo evenementVo) {
 //        
 //        
@@ -72,28 +103,26 @@ public class EvenementServiceImpl implements EvenementService {
     
     //add activite to evenement
     @Override
-public EvenementVo addActiviteToEvenement(Long idEvenement, Long idActivite) {
+    public void addActiviteToEvenement(Long idEvenement, ActiviteVo activiteVo) {
         Evenement evenement = evenementRepository.findById(idEvenement).get();
-        Activite activite = activiteRepository.findById(idActivite).get();
+        Activite activite = activiteRepository.findById(activiteVo.getId()).get();
         evenement.getActivites().add(activite);
         evenementRepository.save(evenement);
-        return EvenementConverter.toVo(evenement);
-
 
     }
 
 //    @Override
-//    public void addActiviteToEvenement(Long idEvenement, Long idActivite) {
-////        Evenement evenement = evenementRepository.findById(idEvenement).get();
-////        Activite activite = new Activite();
-////        activite.setId(idActivite);
-////        evenement.getActivites().add(activite);
-////        evenementRepository.save(evenement);
-////        return EvenementConverter.toVo(evenement);
-//        Evenement evenement = evenementRepository.findById(idEvenement).get();
-//        Activite activite = activiteRepository.findById(idActivite).get();
-//        evenement.getActivites().add(activite);
+//    public Evenement addEvent(EvenementVo evenementVo, List<ActiviteVo> activiteVos) {
+//        Evenement evenement = EvenementConverter.toBo(evenementVo);
+//        for (ActiviteVo activiteVo : activiteVos) {
+//            Activite activite = activiteRepository.findById(activiteVo.getId()).get();
+//            evenement.getActivites().add(activite);
+//        }
+//        evenementRepository.save(evenement);
+//        return evenement;
 //    }
+
+
 //
 //    @Override
 //    public List<EvenementVo> findByActiviteEvenement(String activite) {

@@ -1,5 +1,6 @@
 package org.sid.backend.controllers;
 import lombok.Data;
+import org.sid.backend.domaine.ActiviteVo;
 import org.sid.backend.domaine.EvenementVo;
 import org.sid.backend.model.Evenement;
 import org.sid.backend.sec.web.AccountRestController;
@@ -27,7 +28,7 @@ public class EvenementRestController {
         if (evenementVoFound == null) {
             return new ResponseEntity<>("Evenement not found", HttpStatus.OK);
         }
-return new ResponseEntity<>(evenementVoFound , HttpStatus.OK);
+        return new ResponseEntity<>(evenementVoFound , HttpStatus.OK);
     }
 
 
@@ -39,13 +40,18 @@ return new ResponseEntity<>(evenementVoFound , HttpStatus.OK);
     }
 
     //add activite to evenement
-    @PostAuthorize("hasAuthority('ADMIN')")
-    @PostMapping(value = "/addActiviteToEvenement/{idEvenement}/{idActivite}")
-    public ResponseEntity<Object>  addActiviteToEvenement(@Valid @RequestBody Long idEvenement, @Valid @RequestBody Long idActivite) {
-         evenementService.addActiviteToEvenement(idEvenement, idActivite);
-        return new ResponseEntity<>("activity is added successfully", HttpStatus.CREATED);
+    @PostMapping(value = "/evenements/{id}/activites")
+    public ResponseEntity<Object> addActiviteToEvenement(@PathVariable(value = "id") Long evenementVoId, @Valid @RequestBody ActiviteVo activiteVo) {
 
+        EvenementVo evenementVoFound= evenementService.getEvenementById(evenementVoId);
+        if (evenementVoFound == null) {
+            return new ResponseEntity<>("Evenement not found", HttpStatus.OK);
+        }
+        evenementService.addActiviteToEvenement(evenementVoId, activiteVo);
+        return new ResponseEntity<>("Activite added successfully", HttpStatus.CREATED);
     }
+
+    //add event
 
     /*
     *  public void addRoleToUser(@RequestBody RoleUserForm roleUserForm){
