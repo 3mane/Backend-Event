@@ -1,11 +1,12 @@
 package org.sid.backend.model;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.sid.backend.domaine.ActiviteVo;
 
 @Data
 @Getter
@@ -25,8 +26,14 @@ public class Evenement implements Serializable {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateFin;
     private String lieu;
+    @JsonIgnore
     @OneToMany(mappedBy= "evenement",cascade= CascadeType.ALL)
-    private List<Activite> activites;
+    private List<Activite> activites=new ArrayList<>();
+
+//    public void addActivite (Activite a ){
+//        a.setEvenement(this);
+//        activites.add(a);
+//    }
 
 
 }

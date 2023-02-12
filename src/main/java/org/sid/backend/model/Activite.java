@@ -1,12 +1,10 @@
 package org.sid.backend.model;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,10 +32,12 @@ public class Activite  implements Serializable {
     @ManyToOne
     @JoinColumn(name="evenement_id")
     private Evenement evenement;
-    @ManyToMany( fetch=FetchType.LAZY,cascade=CascadeType.ALL )
+    @ManyToMany( fetch=FetchType.EAGER,cascade=CascadeType.ALL )
     @JoinTable(name="activites_users",joinColumns= {@JoinColumn(name="activites_id")},inverseJoinColumns= {@JoinColumn(name="users_id")})
+    @JsonIgnore
     //Set lfr9 binha w bin tab 3adi anaho maymknch ykono fiha des doublons
-    private Set<AppUser> users =new HashSet<>();
+    //private Set<AppUser> users =new HashSet<>();
+    private Collection<AppUser> users =new ArrayList<>();
     @OneToMany(mappedBy= "activite",cascade= CascadeType.ALL)
     private List<Notification> notifications;
 }

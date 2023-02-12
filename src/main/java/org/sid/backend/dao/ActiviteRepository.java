@@ -8,8 +8,8 @@ public interface ActiviteRepository extends JpaRepository<Activite, Long> {
 
 
 
-    //query sql by name
-    List<Activite> findByName(String name);
+    //find by name activite
+    Activite findByName(String nom);
 
 
 

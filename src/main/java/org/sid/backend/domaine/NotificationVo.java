@@ -15,11 +15,11 @@ import java.util.Set;
 public class NotificationVo {
     private String id;
     private String idUser;
-    private String idActivite;
-    private String idEvenement;
+   // private String idActivite;
+   // private String idEvenement;
     private String type;
     private Date date;
     private boolean confirmed;
-    private Set<AppUser> users =new HashSet<>();
-    private Activite activite;
+    private Set<AppUser> usersVo =new HashSet<>();
+    private ActiviteVo activite;
 }

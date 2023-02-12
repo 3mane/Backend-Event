@@ -5,6 +5,7 @@ import org.sid.backend.model.Activite;
 import org.sid.backend.model.Evenement;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class EvenementConverter {
@@ -16,11 +17,10 @@ public static EvenementVo toVo(Evenement evenement) {
           evenementVo.setDateDebut(evenement.getDateDebut());
           evenementVo.setDateFin(evenement.getDateFin());
           evenementVo.setLieu(evenement.getLieu());
-
-          //  evenementVo.setActivites(ActiviteConverter.toVo(evenement.getActivites()));
-         evenementVo.setActivites(evenement.getActivites());
-
-
+          for (Activite activite : evenement.getActivites()) {
+              evenementVo.getActivitesVo().add(ActiviteConverter.toVo(activite));
+            }
+        //    evenementVo.setActivitesVo((ArrayList<ActiviteVo>) ActiviteConverter.toVo(evenement.getActivites()));
 
 
           return evenementVo;
@@ -33,8 +33,13 @@ public static Evenement toBo(EvenementVo evenementVo) {
           evenement.setDateDebut(evenementVo.getDateDebut());
           evenement.setDateFin(evenementVo.getDateFin());
           evenement.setLieu(evenementVo.getLieu());
-           // evenement.setActivites((List<Activite>) ActiviteConverter.toBo((ActiviteVo) evenementVo.getActivites()));
-           evenement.setActivites(evenementVo.getActivites());
+
+          //evenement.setActivites(evenementVo.getActivitesVo());
+         // evenement.setActivites((ArrayList<Activite>) ActiviteConverter.toBo(evenementVo.getActivitesVo()));
+                  for (ActiviteVo activiteVo : evenementVo.getActivitesVo()) {
+                      evenement.getActivites().add(ActiviteConverter.toBo(activiteVo));
+                  }
+         // evenement.setActivites((List<Activite>) ActiviteConverter.toBo(evenementVo.getActivitesVo()));
           return evenement;
 
 }

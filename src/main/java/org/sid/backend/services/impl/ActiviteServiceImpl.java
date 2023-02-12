@@ -1,21 +1,27 @@
 package org.sid.backend.services.impl;
-
 import org.sid.backend.dao.ActiviteRepository;
 import org.sid.backend.domaine.ActiviteVo;
 import org.sid.backend.domaine.converter.ActiviteConverter;
 import org.sid.backend.model.Activite;
+import org.sid.backend.model.Notification;
+import org.sid.backend.sec.entities.AppUser;
+import org.sid.backend.sec.repo.AppUserRepository;
 import org.sid.backend.services.ActiviteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
+@Transactional
 public class  ActiviteServiceImpl implements ActiviteService {
     @Autowired
     private ActiviteRepository activiteRepository;
+    @Autowired
+    private AppUserRepository appUserRepository;
 
     @Override
     public List<ActiviteVo> getAllActivites() {
@@ -30,15 +36,33 @@ public class  ActiviteServiceImpl implements ActiviteService {
 
     }
 
+
+    /*
+    *     @Override
+    public void saveEvenement(EvenementVo evenementVo) {
+        Evenement evenement = EvenementConverter.toBo(evenementVo);
+        for (Activite activite : evenement.getActivites()) {
+            activite.setEvenement(evenement);
+        }
+        evenementRepository.save(evenement);
+    }*/
     @Override
     public void saveActivite(ActiviteVo activiteVo) {
-        activiteRepository.save(ActiviteConverter.toBo(activiteVo));
+      Activite activite = ActiviteConverter.toBo(activiteVo);
+      for (AppUser appUser : activite.getUsers()) {
+                appUser.setActivites((List<Activite>) activite);
+      }
+      //notification
+        for (Notification notification : activite.getNotifications()) {
+            notification.setActivite(activite);
+        }
+            activiteRepository.save(activite);
     }
 
     @Override
     public ActiviteVo updateActivite(ActiviteVo activiteVo) {
        //update activite
-        Activite activite = ActiviteConverter.toBo(activiteVo);
+        Activite activite = (Activite) ActiviteConverter.toBo(activiteVo);
         activiteRepository.save(activite);
         return ActiviteConverter.toVo(activite);
     }
@@ -47,6 +71,14 @@ public class  ActiviteServiceImpl implements ActiviteService {
     public void deleteActivite(Long id) {
         activiteRepository.deleteById(id);
     }
+///////////////////////////////////////////////////////////////////////////////
+    @Override
+    public void addUserToActivite(String nameActivity , String nameUser) {
+        Activite activite = activiteRepository.findByName(nameActivity);
+        AppUser appUser = appUserRepository.findByUsername(nameUser);
+        activite.getUsers().add(appUser);
+    }
+///////////////////////////////////////////////////////////////////////////////
 
     @Override
     public List<ActiviteVo> getAllActivitesParPage(int page, int size) {
@@ -55,16 +87,11 @@ public class  ActiviteServiceImpl implements ActiviteService {
     }
 
     @Override
-    public List<ActiviteVo> findByName(String name) {
-        List<Activite> activite = activiteRepository.findByName(name);
-        return ActiviteConverter.toVo(activite);
+    public Activite findByName(String name) {
+        return activiteRepository.findByName(name);
     }
 
-//    @Override
-//    public List<ActiviteVo> findByCategorieActivite(String categorie) {
-//        List<Activite> activite = activiteRepository.findByCategorieActivite(categorie);
-//        return ActiviteConverter.toVo(activite);
-//    }
+
 }
 
 

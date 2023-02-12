@@ -3,6 +3,7 @@ import org.sid.backend.dao.ActiviteRepository;
 import org.sid.backend.dao.EvenementRepository;
 import org.sid.backend.domaine.ActiviteVo;
 import org.sid.backend.domaine.EvenementVo;
+import org.sid.backend.domaine.converter.ActiviteConverter;
 import org.sid.backend.domaine.converter.EvenementConverter;
 import org.sid.backend.model.Activite;
 import org.sid.backend.model.Evenement;
@@ -12,8 +13,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 @Service
+@Transactional
 public class EvenementServiceImpl implements EvenementService {
     @Autowired
     private EvenementRepository evenementRepository;
@@ -21,8 +25,8 @@ public class EvenementServiceImpl implements EvenementService {
     ActiviteRepository activiteRepository;
     @Override
     public List<EvenementVo> getAllEvenements() {
-        List<Evenement> evenement = evenementRepository.findAll();
-        return EvenementConverter.toVo(evenement);
+    List<Evenement> evenement = evenementRepository.findAll();
+            return EvenementConverter.toVo(evenement);
     }
     @Override
     public EvenementVo getEvenementById(Long id) {
@@ -33,30 +37,11 @@ public class EvenementServiceImpl implements EvenementService {
     @Override
     public void saveEvenement(EvenementVo evenementVo) {
         Evenement evenement = EvenementConverter.toBo(evenementVo);
+        for (Activite activite : evenement.getActivites()) {
+            activite.setEvenement(evenement);
+        }
         evenementRepository.save(evenement);
-
     }
-
-//    @Override
-//    public void saveEvenement(Evenement evenementV) {
-//        for (Activite activite : evenementV.getActivites()) {
-//            activite.setEvenement(evenementV);
-//        }
-//        evenementRepository.save(evenementV);
-//
-//
-//
-//    }
-
-
-
-
-
-
-
-
-
-
 
 
     @Override
