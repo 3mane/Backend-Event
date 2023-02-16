@@ -22,7 +22,7 @@ private ActiviteService activiteService;
     }
 
 
-    @GetMapping(value = "/activites/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/activite/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
    public ResponseEntity<Object> getActiviteById(@PathVariable(value = "id") String activiteVoId) {
         ActiviteVo activiteVoFound= activiteService.getActiviteById(Long.valueOf(activiteVoId));
         if (activiteVoFound == null) {
