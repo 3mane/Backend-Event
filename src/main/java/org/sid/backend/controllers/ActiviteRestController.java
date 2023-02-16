@@ -35,8 +35,10 @@ private ActiviteService activiteService;
         return new ResponseEntity<>("Activite created successfully", HttpStatus.CREATED);
     }
     //add user to activite
+
       @PostMapping(path ="/addUserToActivite")
-        @PostAuthorize("hasAuthority('ADMIN')")
+        @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+
         public void addUserToActivite(@RequestBody UserActiviteForm userActiviteForm){
             activiteService.addUserToActivite(userActiviteForm.getNameActivite(),userActiviteForm.getNameUser());
         }

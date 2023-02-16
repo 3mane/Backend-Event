@@ -21,7 +21,11 @@ public class AppUser  implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
-    //private String email;
+    private String nom;
+    private String prenom;
+    private String tel;
+    private String adresse;
+    private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     //EAGER : pour charger les roles de l'utilisateur
