@@ -20,14 +20,18 @@ private ActiviteService activiteService;
     public List<ActiviteVo> getAllActivites() {
     return activiteService.getAllActivites();
     }
+
+
     @GetMapping(value = "/activites/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-   public ResponseEntity<Object> getActiviteById(@PathVariable(value = "id") Long activiteVoId) {
-        ActiviteVo activiteVoFound= activiteService.getActiviteById(activiteVoId);
+   public ResponseEntity<Object> getActiviteById(@PathVariable(value = "id") String activiteVoId) {
+        ActiviteVo activiteVoFound= activiteService.getActiviteById(Long.valueOf(activiteVoId));
         if (activiteVoFound == null) {
             return new ResponseEntity<>("Activite not found", HttpStatus.OK);
         }
         return new ResponseEntity<>(activiteVoFound , HttpStatus.OK);
     }
+
+
     @PostAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/activites", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Object> saveActivite(@Valid @RequestBody ActiviteVo activiteVo) {
@@ -49,6 +53,7 @@ private ActiviteService activiteService;
     public List<ActiviteVo> getActiviteByIdEvenement(@PathVariable(value = "id") String evenementVoId) {
         return activiteService.getActiviteByIdEvenement(Long.valueOf(evenementVoId));
     }
+
     @Data
     static class UserActiviteForm{
         private String nameActivite;
