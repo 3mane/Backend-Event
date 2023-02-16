@@ -42,6 +42,13 @@ private ActiviteService activiteService;
         public void addUserToActivite(@RequestBody UserActiviteForm userActiviteForm){
             activiteService.addUserToActivite(userActiviteForm.getNameActivite(),userActiviteForm.getNameUser());
         }
+
+    //get activite by id evenement
+    @GetMapping(value = "/activites/evenement/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    public List<ActiviteVo> getActiviteByIdEvenement(@PathVariable(value = "id") String evenementVoId) {
+        return activiteService.getActiviteByIdEvenement(Long.valueOf(evenementVoId));
+    }
     @Data
     static class UserActiviteForm{
         private String nameActivite;

@@ -37,12 +37,12 @@ public class Application {
             accountService.addNewRole(new AppRole(null,"USER"));
             accountService.addNewRole(new AppRole(null,"ADMIN"));
             accountService.addNewUser(new AppUser(null, "user1", "Ayoub","Labied","0666666666","lakhmiss bettana sale","ayoub@gmail.com","1234", new ArrayList<>(),new HashSet<>(),new ArrayList<>()));
-            accountService.addNewUser(new AppUser(null,"admin", "OTHmane","benomar","0666666666","lakhmiss bettana sale","ayoub@gmail.com","1234",new ArrayList<>(),new HashSet<>(),new ArrayList<>()));
-          //  accountService.addNewUser(new AppUser(null,"user2","1234",new ArrayList<>(),new HashSet<>(),new ArrayList<>()));
+            accountService.addNewUser(new AppUser(null,"admin", "OTHmane","benomar","0666666666","elmassira bettana sale","ayoub@gmail.com","1234",new ArrayList<>(),new HashSet<>(),new ArrayList<>()));
+           accountService.addNewUser(new AppUser(null,"user2", "Hamza","benomar","0666666666","elmassira bettana sale","ayoub@gmail.com","1234",new ArrayList<>(),new HashSet<>(),new ArrayList<>()));
             accountService.addRoleToUser("user1","USER");
            // accountService.addRoleToUser("admin","USER");
             accountService.addRoleToUser("admin","ADMIN");
-        //    accountService.addRoleToUser("user2","USER");
+          accountService.addRoleToUser("user2","USER");
 
            // notificationService.saveNotification(new NotificationVo(null,"user1","1",null,"Activite",new Date(),false,new HashSet<>(),new ActiviteVo()));
 

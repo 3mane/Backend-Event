@@ -36,6 +36,12 @@ public class  ActiviteServiceImpl implements ActiviteService {
 
     }
 
+    @Override
+    public List<ActiviteVo> getActiviteByIdEvenement(Long id) {
+        List<Activite> activite = activiteRepository.findByEvenementId(id);
+        return ActiviteConverter.toVo(activite);
+    }
+
 
     /*
     *     @Override
