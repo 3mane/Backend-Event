@@ -54,6 +54,30 @@ private ActiviteService activiteService;
         return activiteService.getActiviteByIdEvenement(Long.valueOf(evenementVoId));
     }
 
+    //update activite
+    @PutMapping(value = "/activites/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostAuthorize("hasAuthority('ADMIN') ")
+    public ResponseEntity<Object> updateActivite(@PathVariable(value = "id") String activiteVoId, @Valid @RequestBody ActiviteVo activiteVo) {
+        ActiviteVo activiteVoFound= activiteService.getActiviteById(Long.valueOf(activiteVoId));
+        if (activiteVoFound == null) {
+            return new ResponseEntity<>("Activite not found", HttpStatus.OK);
+        }
+        activiteService.updateActivite(activiteVo);
+        return new ResponseEntity<>("Activite updated successfully", HttpStatus.OK);
+    }
+    //delete activite
+    @DeleteMapping(value = "/activites/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostAuthorize("hasAuthority('ADMIN') ")
+    public ResponseEntity<Object> deleteActivite(@PathVariable(value = "id") String activiteVoId) {
+        ActiviteVo activiteVoFound= activiteService.getActiviteById(Long.valueOf(activiteVoId));
+        if (activiteVoFound == null) {
+            return new ResponseEntity<>("Activite not found", HttpStatus.OK);
+        }
+        activiteService.deleteActivite(Long.valueOf(activiteVoId));
+        return new ResponseEntity<>("Activite deleted successfully", HttpStatus.OK);
+    }
+
+
     @Data
     static class UserActiviteForm{
         private String nameActivite;

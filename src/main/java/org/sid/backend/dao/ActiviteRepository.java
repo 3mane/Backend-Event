@@ -12,14 +12,7 @@ public interface ActiviteRepository extends JpaRepository<Activite, Long> {
 
     //find by name activite
     Activite findByName(String nom);
+    List<Activite> findByEvenementId(Long id);
 
-
-
-  List<Activite> findByEvenementId(Long id);
-
-
-    //query
-//    List<Activite> findByNomActivite(String nom);
-//    List<Activite> findByCategorieActivite(String categorie);
 }
 

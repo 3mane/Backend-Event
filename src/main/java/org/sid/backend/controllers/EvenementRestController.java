@@ -38,6 +38,34 @@ public class EvenementRestController {
     }
 
 
+//update evenement
+    @PutMapping(value = "/evenements/{id}")
+    @PostAuthorize("hasAuthority('ADMIN')")
+    public  ResponseEntity<Object> updateEvenement(@PathVariable(value = "id") Long evenementVoId,
+                                                  @Valid @RequestBody EvenementVo evenementVo) {
+        EvenementVo evenementVoFound= evenementService.getEvenementById(evenementVoId);
+        if (evenementVoFound == null) {
+            return new ResponseEntity<>("Evenement not found", HttpStatus.OK);
+        }
+        evenementVo.setId(evenementVoId);
+        evenementVo.setDateDebut(evenementVoFound.getDateDebut());
+        evenementVo.setDateFin(evenementVoFound.getDateFin());
+        evenementVo.setDescription(evenementVoFound.getDescription());
+        evenementVo.setName(evenementVoFound.getName());
+        evenementService.updateEvenement(evenementVo);
+        return new ResponseEntity<>("Evenement updated successfully", HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/evenements/{id}")
+    @PostAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Object> deleteEvenement(@PathVariable(value = "id") Long evenementVoId) {
+        EvenementVo evenementVoFound= evenementService.getEvenementById(evenementVoId);
+        if (evenementVoFound == null) {
+            return new ResponseEntity<>("Evenement not found", HttpStatus.OK);
+        }
+        evenementService.deleteEvenement(evenementVoId);
+        return new ResponseEntity<>("Evenement deleted successfully", HttpStatus.OK);
+    }
 
     //add event
 
