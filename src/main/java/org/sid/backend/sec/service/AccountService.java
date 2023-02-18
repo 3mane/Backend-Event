@@ -13,4 +13,5 @@ public interface AccountService {
      AppUser loadUserByUsername(String username);
      List<AppUser> listUsers();
 
+  //  List<AppUser> listUsersWithRoles();
 }

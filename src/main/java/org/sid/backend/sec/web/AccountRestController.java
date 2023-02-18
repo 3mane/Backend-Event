@@ -11,7 +11,6 @@ import org.sid.backend.sec.entities.AppUser;
 import org.sid.backend.sec.service.AccountService;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
@@ -30,10 +29,16 @@ public class AccountRestController {
 
 
     @GetMapping(path = "/users")
-    @PostAuthorize("hasAuthority('USER')")
+    @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
     public List<AppUser> listUsers(){
         return accountService.listUsers();
-    }
+   }
+    //list users with roles
+//    @GetMapping(path = "/usersWithRoles")
+//    @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+//    public List<AppUser> listUsersWithRoles(){
+//        return accountService.listUsersWithRoles();
+//    }
 
     @PostMapping(path ="/users")
     @PostAuthorize("hasAuthority('ADMIN')")

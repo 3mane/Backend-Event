@@ -2,7 +2,6 @@ package org.sid.backend.domaine.converter;
 import org.sid.backend.domaine.ActiviteVo;
 import org.sid.backend.model.Activite;
 import org.sid.backend.sec.entities.AppUser;
-
 import java.util.ArrayList;
 import java.util.List;
 

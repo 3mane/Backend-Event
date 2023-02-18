@@ -12,6 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("*")
                 .allowedOrigins("*");
 
+
         //.addMapping("/users")
         //.allowedMethods("GET","POST")
         //.allowedOrigins("http://localhost:4200")

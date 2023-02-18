@@ -10,7 +10,7 @@ import java.util.List;
 
 public class EvenementConverter {
 public static EvenementVo toVo(Evenement evenement) {
-         EvenementVo evenementVo = new EvenementVo();
+          EvenementVo evenementVo = new EvenementVo();
           evenementVo.setId(evenement.getId());
           evenementVo.setName(evenement.getName());
           evenementVo.setDescription(evenement.getDescription());

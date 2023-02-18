@@ -11,19 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
 private UserDetailsServiceImpl userDetailsService;
 
     public SecurityConfig(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
-
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(userDetailsService);
@@ -36,12 +31,12 @@ private UserDetailsServiceImpl userDetailsService;
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.headers().frameOptions().disable();
-        http.authorizeRequests().antMatchers("/h2-console/**","/refreshToken/**").permitAll();
+        http.authorizeRequests().antMatchers("/h2-console/**","/refreshToken/**").permitAll()
+                .antMatchers("/v2/api-docs","/swagger-resources/**","/swagger-ui.html","/webjars/**").permitAll();
         //http.formLogin();
 //        http.authorizeRequests().antMatchers(HttpMethod.POST,"/users/**").hasRole( "ADMIN");
 //        http.authorizeRequests().antMatchers(HttpMethod.GET,"/users/**").hasAuthority("USER");
         http.authorizeRequests().anyRequest().authenticated();
-        //
         http.addFilter(new JwtAuthenticationFilter(authenticationManagerBean()));
         http.addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

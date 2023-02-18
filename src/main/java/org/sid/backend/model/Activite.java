@@ -22,10 +22,8 @@ public class Activite  implements Serializable {
     private String name;
     private String description;
     @JsonFormat(pattern="yyyy-MM-dd")
-
     private Date dateDebut;
     @JsonFormat(pattern="yyyy-MM-dd")
-
     private Date dateFin;
     private String lieu;
     private String categorie;
