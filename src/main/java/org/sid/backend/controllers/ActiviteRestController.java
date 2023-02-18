@@ -18,7 +18,7 @@ public class ActiviteRestController {
 private ActiviteService activiteService;
 //@RequestMapping("/activites")
     @GetMapping(value = "/activites", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    @PostAuthorize("hasAuthority('USER')")
+    @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
     public List<ActiviteVo> getAllActivites() {
     return activiteService.getAllActivites();
     }

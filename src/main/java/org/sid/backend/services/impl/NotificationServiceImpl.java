@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import java.util.*;
+import java.util.Date;
 
 
 
@@ -46,6 +47,8 @@ public class NotificationServiceImpl implements NotificationService {
     public void saveNotification() {
         for (Activite activite : activiteRepository.findAll(Sort.by(Sort.Direction.ASC, "dateDebut")) ){
           //  if (activite.getDateDebut().getTime() - new Date().getTime() <= 900000) {
+            if(activite.getDateDebut().equals(new Date())){
+        //    assertThat(firstDate.isEqual(secondDate), is(false));
                 Notification notification = new Notification();
                 notification.setActivite(activite);
                 notification.setConfirmed(false);
@@ -53,7 +56,7 @@ public class NotificationServiceImpl implements NotificationService {
                 notification.setName("test" + i++);
                 notificationRepository.save(notification);
                 System.out.println("notification saved");
-     //       }
+           }
         }
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,23 +73,23 @@ public void addNotificationToUsers(String nameNotification, Long idActivite) {
     });
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    @Override
-    public void saveNotification(NotificationVo notificationVo) {
-        notificationRepository.save(NotificationConverter.toBo(notificationVo));
-    }
-
-
-    @Override
-    public NotificationVo updateNotification(NotificationVo notificationVo) {
-        //update notification
-        Notification notification = NotificationConverter.toBo(notificationVo);
-        notificationRepository.save(notification);
-        return NotificationConverter.toVo(notification);
-    }
-
-    @Override
-    public void deleteNotification(Long id) {
-        notificationRepository.deleteById(String.valueOf(id));
-    }
+//
+//    @Override
+//    public void saveNotification(NotificationVo notificationVo) {
+//        notificationRepository.save(NotificationConverter.toBo(notificationVo));
+//    }
+//
+//
+//    @Override
+//    public NotificationVo updateNotification(NotificationVo notificationVo) {
+//        //update notification
+//        Notification notification = NotificationConverter.toBo(notificationVo);
+//        notificationRepository.save(notification);
+//        return NotificationConverter.toVo(notification);
+//    }
+//
+//    @Override
+//    public void deleteNotification(Long id) {
+//        notificationRepository.deleteById(String.valueOf(id));
+//    }
 }

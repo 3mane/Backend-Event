@@ -15,12 +15,12 @@ public interface NotificationService {
     void addNotificationToUsers(String nameNotification,Long idActivite);
 
     void saveNotification();
-    void saveNotification( NotificationVo notificationVo);
-
-
-    //update notification
-    NotificationVo updateNotification(NotificationVo notificationVo);
-    //delete notification
-    void deleteNotification(Long id);
+//    void saveNotification( NotificationVo notificationVo);
+//
+//
+//    //update notification
+//    NotificationVo updateNotification(NotificationVo notificationVo);
+//    //delete notification
+//    void deleteNotification(Long id);
 
 }

@@ -36,6 +36,8 @@ public class Activite  implements Serializable {
     //Set lfr9 binha w bin tab 3adi anaho maymknch ykono fiha des doublons
     //private Set<AppUser> users =new HashSet<>();
     private Collection<AppUser> users =new ArrayList<>();
+
     @OneToMany(mappedBy= "activite",cascade= CascadeType.ALL)
+    //@JsonIgnore
     private List<Notification> notifications;
 }

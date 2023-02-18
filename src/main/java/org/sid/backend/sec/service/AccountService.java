@@ -13,5 +13,10 @@ public interface AccountService {
      AppUser loadUserByUsername(String username);
      List<AppUser> listUsers();
 
+     //by id
+        AppUser getUser(Long id);
+        //update user
+        AppUser updateUser(AppUser appUser);
+
   //  List<AppUser> listUsersWithRoles();
 }

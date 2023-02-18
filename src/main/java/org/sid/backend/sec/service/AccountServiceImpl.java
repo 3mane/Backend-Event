@@ -1,5 +1,4 @@
 package org.sid.backend.sec.service;
-
 import org.sid.backend.sec.entities.AppRole;
 import org.sid.backend.sec.entities.AppUser;
 import org.sid.backend.sec.repo.AppRoleRepository;
@@ -7,7 +6,6 @@ import org.sid.backend.sec.repo.AppUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 @Service
 @Transactional
@@ -61,9 +59,17 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<AppUser> listUsers() {
         //set roles
-
-
         return appUserRepository.findAll();
+    }
+
+    @Override
+    public AppUser getUser(Long id) {
+        return appUserRepository.findById(id).get();
+    }
+
+    @Override
+    public AppUser updateUser(AppUser appUser) {
+        return appUserRepository.save(appUser);
     }
 
 

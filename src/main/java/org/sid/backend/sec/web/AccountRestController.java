@@ -9,10 +9,13 @@ import org.sid.backend.sec.JwtUtil;
 import org.sid.backend.sec.entities.AppRole;
 import org.sid.backend.sec.entities.AppUser;
 import org.sid.backend.sec.service.AccountService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,6 +28,13 @@ public class AccountRestController {
 
    public AccountRestController(AccountService accountService) {
         this.accountService = accountService;
+    }
+
+//get user by id
+    @GetMapping(path = "/user/{id}")
+    @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    public AppUser getUser(@PathVariable Long id){
+        return accountService.getUser(id);
     }
 
 
@@ -44,6 +54,37 @@ public class AccountRestController {
     @PostAuthorize("hasAuthority('ADMIN')")
     public AppUser saveUser(@RequestBody AppUser appUser){
         return accountService.addNewUser(appUser);
+    }
+
+    //update user
+    @PutMapping(path ="/user/{id}")
+    @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    public ResponseEntity<Object>  updateUser(@PathVariable Long id,@Valid @RequestBody AppUser appUser){
+       /*  EvenementVo evenementVoFound= evenementService.getEvenementById(evenementVoId);
+        if (evenementVoFound == null) {
+            return new ResponseEntity<>("Evenement not found", HttpStatus.OK);
+        }
+        evenementVo.setId(evenementVoId);
+        evenementVo.setDateDebut(evenementVoFound.getDateDebut());
+        evenementVo.setDateFin(evenementVoFound.getDateFin());
+        evenementVo.setDescription(evenementVoFound.getDescription());
+        evenementVo.setName(evenementVoFound.getName());
+        evenementService.updateEvenement(evenementVo);
+        return new ResponseEntity<>("Evenement updated successfully", HttpStatus.OK);*/
+        AppUser appUserFound = accountService.getUser(id);
+        if (appUserFound == null) {
+            return new ResponseEntity<>("User not found", HttpStatus.OK);
+        }
+        appUser.setId(id);
+        appUser.setNom(appUserFound.getNom());
+        appUser.setPrenom(appUserFound.getPrenom());
+        appUser.setEmail(appUserFound.getEmail());
+        appUser.setTel(appUserFound.getTel());
+        appUser.setAdresse(appUserFound.getAdresse());
+        accountService.updateUser(appUser);
+        return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
+
+       // return accountService.updateUser(appUser);
     }
 
     @PostMapping(path ="/roles")

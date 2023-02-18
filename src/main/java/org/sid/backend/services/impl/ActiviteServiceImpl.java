@@ -59,9 +59,9 @@ public class  ActiviteServiceImpl implements ActiviteService {
                 appUser.setActivites((List<Activite>) activite);
       }
       //notification
-        for (Notification notification : activite.getNotifications()) {
-            notification.setActivite(activite);
-        }
+//        for (Notification notification : activite.getNotifications()) {
+//            notification.setActivite(activite);
+//        }
             activiteRepository.save(activite);
     }
 

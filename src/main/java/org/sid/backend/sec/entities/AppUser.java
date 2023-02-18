@@ -34,6 +34,6 @@ public class AppUser  implements Serializable {
     @ManyToMany( fetch=FetchType.LAZY,cascade=CascadeType.ALL ,mappedBy="users")
     private Set<Notification> notifications = new HashSet<>();
     @ManyToMany( fetch=FetchType.LAZY,cascade=CascadeType.ALL ,mappedBy="users")
-    @JsonIgnore
+
     private List<Activite> activites = new ArrayList<>();
 }
