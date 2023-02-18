@@ -47,13 +47,13 @@ public class NotificationServiceImpl implements NotificationService {
     public void saveNotification() {
         for (Activite activite : activiteRepository.findAll(Sort.by(Sort.Direction.ASC, "dateDebut")) ){
           //  if (activite.getDateDebut().getTime() - new Date().getTime() <= 900000) {
-            if(activite.getDateDebut().equals(new Date())){
+            if(activite.getDateDebut().before(new Date())){
         //    assertThat(firstDate.isEqual(secondDate), is(false));
                 Notification notification = new Notification();
                 notification.setActivite(activite);
                 notification.setConfirmed(false);
                 notification.setDate(new Date());
-                notification.setName("test" + i++);
+                notification.setName("l' activite a commence" + i++);
                 notificationRepository.save(notification);
                 System.out.println("notification saved");
            }

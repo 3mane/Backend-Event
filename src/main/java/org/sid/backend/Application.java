@@ -36,6 +36,7 @@ public class Application {
         return args -> {
             accountService.addNewRole(new AppRole(null,"USER"));
             accountService.addNewRole(new AppRole(null,"ADMIN"));
+            accountService.addNewRole(new AppRole(null,"RESPONSABLE"));
             accountService.addNewUser(new AppUser(null, "user1", "Ayoub","Labied","0666666666","lakhmiss bettana sale","ayoub@gmail.com","1234", new ArrayList<>(),new HashSet<>(),new ArrayList<>()));
             accountService.addNewUser(new AppUser(null,"admin", "OTHmane","benomar","0666666666","elmassira bettana sale","ayoub@gmail.com","1234",new ArrayList<>(),new HashSet<>(),new ArrayList<>()));
            accountService.addNewUser(new AppUser(null,"user2", "Hamza","benomar","0666666666","elmassira bettana sale","ayoub@gmail.com","1234",new ArrayList<>(),new HashSet<>(),new ArrayList<>()));
