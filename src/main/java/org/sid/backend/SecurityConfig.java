@@ -31,7 +31,7 @@ private UserDetailsServiceImpl userDetailsService;
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.headers().frameOptions().disable();
-        http.authorizeRequests().antMatchers("/h2-console/**","/refreshToken/**").permitAll()
+        http.authorizeRequests().antMatchers("/h2-console/**","/refreshToken/**","/register").permitAll()
                 .antMatchers("/v2/api-docs","/swagger-resources/**","/swagger-ui.html","/webjars/**").permitAll();
         //http.formLogin();
 //        http.authorizeRequests().antMatchers(HttpMethod.POST,"/users/**").hasRole( "ADMIN");

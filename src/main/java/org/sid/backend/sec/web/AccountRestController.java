@@ -37,6 +37,28 @@ public class AccountRestController {
         return accountService.getUser(id);
     }
 
+//register user
+    @PostMapping(path ="/register")
+    public AppUser register(@RequestBody RegisterForm userForm){
+        if(!userForm.getPassword().equals(userForm.getPassword()))
+            throw new RuntimeException("You must confirm your password");
+        AppUser user=accountService.loadUserByUsername(userForm.getUsername());
+        if(user!=null) throw new RuntimeException("This user already exists");
+        AppUser appUser=new AppUser();
+        //register
+        appUser.setUsername(userForm.getUsername());
+        appUser.setPassword(userForm.getPassword());
+        appUser.setNom(userForm.getNom());
+        appUser.setPrenom(userForm.getPrenom());
+        appUser.setEmail(userForm.getEmail());
+        appUser.setTel(userForm.getTel());
+        appUser.setAdresse(userForm.getAdresse());
+        accountService.addNewUser(appUser);
+        accountService.addRoleToUser(userForm.getUsername(),"USER");
+        return appUser;
+    }
+
+
 
     @GetMapping(path = "/users")
     @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
@@ -141,6 +163,17 @@ public AppUser profile(Principal principal){
     static class RoleUserForm{
         private String username;
         private String roleName;
+    }
+
+    @Data
+    static class RegisterForm {
+        private String username;
+        private String password;
+        private String nom;
+        private String prenom;
+        private String email;
+        private String tel;
+        private String adresse;
     }
 }
 

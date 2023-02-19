@@ -72,5 +72,12 @@ public class AccountServiceImpl implements AccountService {
         return appUserRepository.save(appUser);
     }
 
+//    @Override
+//    public AppUser register(AppUser appUser) {
+//        String pwd = appUser.getPassword();
+//        appUser.setPassword(passwordEncoder.encode(pwd));
+//        return appUserRepository.save(appUser);
+//    }
+
 
 }

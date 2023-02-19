@@ -18,5 +18,8 @@ public interface AccountService {
         //update user
         AppUser updateUser(AppUser appUser);
 
+        //register
+
+
   //  List<AppUser> listUsersWithRoles();
 }
