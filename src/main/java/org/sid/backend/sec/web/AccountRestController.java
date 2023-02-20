@@ -10,6 +10,7 @@ import org.sid.backend.sec.entities.AppRole;
 import org.sid.backend.sec.entities.AppUser;
 import org.sid.backend.sec.service.AccountService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,8 @@ public class AccountRestController {
     }
 
 //register user
-    @PostMapping(path ="/register")
+    @PostMapping(path ="/register" ,produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    //content type
     public AppUser register(@RequestBody RegisterForm userForm){
         if(!userForm.getPassword().equals(userForm.getPassword()))
             throw new RuntimeException("You must confirm your password");

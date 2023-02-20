@@ -13,8 +13,13 @@ public interface NotificationService {
    //void saveNotification(NotificationVo notificationVo);
     //addUNotificationToUser
     void addNotificationToUsers(String nameNotification,Long idActivite);
+    // get all notifications by user
+    //List<NotificationVo> getAllNotificationsByUser(Long idUser);
 
     void saveNotification();
+
+  //  List<NotificationVo> getNotificationByIdActivite(Long valueOf);
+            List <NotificationVo> getNotification();
 //    void saveNotification( NotificationVo notificationVo);
 //
 //

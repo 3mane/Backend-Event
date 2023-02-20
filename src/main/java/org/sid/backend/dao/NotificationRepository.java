@@ -2,11 +2,25 @@ package org.sid.backend.dao;
 
 import org.sid.backend.model.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 public interface NotificationRepository extends JpaRepository<Notification, String> {
     Notification findByName(String s);
+
+    //Query find by activite id
+
+  //  @Query("select n from Notification n where n.activite.id = ?1")
+    List<Notification> findByActiviteId(String valueOf);
+
+
+
+   // List<Notification> findByActiviteId(String valueOf);
+    //find by user id
+    //List<Notification> findAllByUsers_Id(Long id);
+
+
 
 //    List<Notification> findByUserNotification(String username);
     //find by id

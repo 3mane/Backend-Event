@@ -59,7 +59,24 @@ public class NotificationServiceImpl implements NotificationService {
            }
         }
     }
-/////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //get notification
+    @Override
+    @Scheduled(fixedRate = 50000)
+    public List<NotificationVo> getNotification(){
+       List<Notification> notifications = notificationRepository.findAll();
+       if (notifications.size() == 0){
+           System.out.println("aucune notification");
+       }
+       else {
+              System.out.println("notification getted");
+       }
+
+        //System.out.println("notification getted");
+        return NotificationConverter.toVo(notifications);
+    }
+
+
 
 
 @Override
