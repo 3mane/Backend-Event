@@ -1,4 +1,4 @@
-package org.sid.backend.sec.web;
+package org.sid.backend.sec.repo.web;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;

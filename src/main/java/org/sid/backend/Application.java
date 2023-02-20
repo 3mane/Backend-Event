@@ -15,7 +15,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 
 @SpringBootApplication
