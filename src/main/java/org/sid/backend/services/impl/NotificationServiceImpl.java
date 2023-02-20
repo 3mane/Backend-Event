@@ -60,6 +60,8 @@ public class NotificationServiceImpl implements NotificationService {
         }
     }
 
+    //
+
     //get notification
     @Override
     @Scheduled(fixedRate = 50000)
