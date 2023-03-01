@@ -44,7 +44,6 @@ private ActiviteService activiteService;
 
       @PostMapping(path ="/addUserToActivite")
         @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
-
         public void addUserToActivite(@RequestBody UserActiviteForm userActiviteForm){
             activiteService.addUserToActivite(userActiviteForm.getNameActivite(),userActiviteForm.getNameUser());
         }
@@ -55,6 +54,7 @@ private ActiviteService activiteService;
     public List<ActiviteVo> getActiviteByIdEvenement(@PathVariable(value = "id") String evenementVoId) {
         return activiteService.getActiviteByIdEvenement(Long.valueOf(evenementVoId));
     }
+    //get activite by id user
 
     //update activite
     @PutMapping(value = "/activites/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})

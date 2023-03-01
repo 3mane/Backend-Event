@@ -7,9 +7,6 @@ import java.util.List;
 
 public interface ActiviteRepository extends JpaRepository<Activite, Long> {
 
-
-
-
     //find by name activite
     Activite findByName(String nom);
     List<Activite> findByEvenementId(Long id);

@@ -22,6 +22,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
+
+
+
+
 @RestController
 public class AccountRestController {
 
@@ -31,12 +35,16 @@ public class AccountRestController {
         this.accountService = accountService;
     }
 
+
+
 //get user by id
     @GetMapping(path = "/user/{id}")
     @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
     public AppUser getUser(@PathVariable Long id){
         return accountService.getUser(id);
     }
+
+
 
 //register user
     @PostMapping(path ="/register" ,produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -73,6 +81,7 @@ public class AccountRestController {
 //    public List<AppUser> listUsersWithRoles(){
 //        return accountService.listUsersWithRoles();
 //    }
+
 
     @PostMapping(path ="/users")
     @PostAuthorize("hasAuthority('ADMIN')")
@@ -117,11 +126,16 @@ public class AccountRestController {
         return accountService.addNewRole(appRole);
     }
 
+
+
     @PostMapping(path ="/addRoleToUser")
     @PostAuthorize("hasAuthority('ADMIN')")
     public void addRoleToUser(@RequestBody RoleUserForm roleUserForm){
         accountService.addRoleToUser(roleUserForm.getUsername(),roleUserForm.getRoleName());
     }
+
+
+
     @GetMapping(path = "/refreshToken")
 public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws  Exception{
 String authToken = request.getHeader(JwtUtil.Auth_Header);
@@ -156,10 +170,16 @@ else {
     throw new RuntimeException("Refresh token required");
 }
 }
+
+
+
 @GetMapping(path = "/profile")
 public AppUser profile(Principal principal){
        return accountService.loadUserByUsername(principal.getName());
 }
+
+
+
 
     @Data
     static class RoleUserForm{
@@ -177,6 +197,8 @@ public AppUser profile(Principal principal){
         private String tel;
         private String adresse;
     }
+
+
 }
 
 

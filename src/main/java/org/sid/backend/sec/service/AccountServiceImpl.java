@@ -59,7 +59,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<AppUser> listUsers() {
         //set roles
-        return appUserRepository.findAll();
+        return appUserRepository.findAll(s);
     }
 
     @Override
